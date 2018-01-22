@@ -21,7 +21,7 @@ public class RectNode extends Node{
         }
     }
     @Override
-    public void draw(Graphics2D pic, Rectangle2D bound) {
+    public void draw(Graphics2D pic, Rectangle bound) {
         JTextArea label = new JTextArea(text);
         label.setBounds(0, 0, getWidth(), getHeight());
         label.setLineWrap(true);
@@ -29,5 +29,15 @@ public class RectNode extends Node{
         label.paint(pic);
         pic.translate(-getX(), -getY());
         pic.drawRect(getX(), getY(), getWidth(), getHeight());
+    }
+
+    @Override
+    public boolean isPointOn(Point mouseP) {
+        if (mouseP.getX() >= getX() && mouseP.getY() >= getY() &&
+                mouseP.getX() <= getWidth() + getX() && mouseP.getY() <= getHeight())
+        {
+            return true;
+        }
+        return false;
     }
 }

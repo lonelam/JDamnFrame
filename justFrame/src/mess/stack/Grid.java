@@ -25,7 +25,7 @@ public class Grid implements DrawSelf{
      * @param pic
      * @param bound 边界
      */
-    public void draw(Graphics2D pic, Rectangle2D bound)
+    public void draw(Graphics2D pic, Rectangle bound)
     {
         Color oldColor = pic.getColor();
         pic.setColor(GRID_COLOR);
@@ -40,5 +40,10 @@ public class Grid implements DrawSelf{
         }
         pic.setColor(oldColor);
         pic.setStroke(oldStroke);
+    }
+
+    @Override
+    public boolean isPointOn(Point mouseP) {
+        return false;
     }
 }

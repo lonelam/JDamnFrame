@@ -36,7 +36,7 @@ public class GraphPanel extends JPanel{
     {
         super.paintComponent(graphic);
         Graphics2D g2 = (Graphics2D) graphic;
-        Rectangle2D bounds = getBounds();
+        Rectangle bounds = getBounds();
         if (!isGridHide) grid.draw(g2, bounds);
         G.draw(g2, bounds);
     }
@@ -47,16 +47,39 @@ public class GraphPanel extends JPanel{
     private class GraphPanelMouseListener extends MouseAdapter
     {
         /**
-         * 这个事件用于处理拖拽
+         * 调用工具实现，初步确定需要选择工具、画笔工具、释放元素工具三大类
          * @param e
          */
         @Override
         public void mousePressed(MouseEvent e) {
             super.mousePressed(e);
+            G.activate(e.getPoint());
         }
 
         /**
-         * 这个用来处理点击
+         * 调用工具实现，初步确定需要选择工具、画笔工具、释放元素工具三大类
+         * 这里遇到的问题是在鼠标过程中可能还需要画图，考虑传参解决
+         * @param e
+         */
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            super.mouseReleased(e);
+        }
+
+
+        /**
+         * 绘图，鼠标失去焦点的情况需要强制取消绘图。
+         * @param e
+         */
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            super.mouseDragged(e);
+        }
+
+        /**
+         * 调用工具实现，初步确定需要选择工具、画笔工具、释放元素工具三大类
+         * 对于双击统一调用选择工具，其他交给工具自己实现。
          * @param e
          */
         @Override
@@ -68,6 +91,7 @@ public class GraphPanel extends JPanel{
             }
             System.out.println(e.getPoint().toString());
         }
+
     }
 
 
