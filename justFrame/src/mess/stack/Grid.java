@@ -30,13 +30,13 @@ public class Grid implements DrawSelf{
         Color oldColor = pic.getColor();
         pic.setColor(GRID_COLOR);
         Stroke oldStroke = pic.getStroke();
-        for(double x = bound.getX() + interval / 2; x < bound.getMaxX(); x += interval)
+        for(double x = interval / 2; x < bound.getWidth(); x += interval)
         {
-            pic.draw(new Line2D.Double(x, bound.getY(), x, bound.getMaxY()));
+            pic.draw(new Line2D.Double(x, 0, x, bound.getHeight()));
         }
-        for(double y = bound.getY() + interval / 2; y < bound.getMaxY(); y += interval)
+        for(double y = interval / 2; y < bound.getHeight(); y += interval)
         {
-            pic.draw(new Line2D.Double(bound.getX(), y, bound.getMaxX(), y));
+            pic.draw(new Line2D.Double(0, y, bound.getWidth(), y));
         }
         pic.setColor(oldColor);
         pic.setStroke(oldStroke);
