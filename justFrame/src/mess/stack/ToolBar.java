@@ -1,3 +1,5 @@
+package mess.stack;
+
 import javax.swing.*;
 import java.awt.*;
 

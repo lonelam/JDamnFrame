@@ -1,13 +1,13 @@
-import com.sun.org.apache.regexp.internal.RE;
+package mess.stack;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
+
 
 public class GraphPanel extends JPanel{
     boolean isGridHide = false;
-    Graph G;
+    Graph G = new Graph();
     void setGridHide()
     {
         isGridHide = true;

@@ -1,10 +1,6 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+package mess.stack;
 
-import static javafx.application.Platform.exit;
-import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import java.awt.*;
 
 
 public class EditorFrame extends Frame{
