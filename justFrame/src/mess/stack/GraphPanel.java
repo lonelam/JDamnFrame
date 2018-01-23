@@ -11,6 +11,7 @@ public class GraphPanel extends JPanel{
     private boolean isGridHide = false;
     private Graph G = new Graph();
     private Grid grid = new Grid(10);
+    private Point mouseBuffer;
 
     public void setGridHide()
     {
@@ -46,6 +47,7 @@ public class GraphPanel extends JPanel{
      */
     private class GraphPanelMouseListener extends MouseAdapter
     {
+        private boolean dragging = false;
         /**
          * 调用工具实现，初步确定需要选择工具、画笔工具、释放元素工具三大类
          * @param e
@@ -54,6 +56,8 @@ public class GraphPanel extends JPanel{
         public void mousePressed(MouseEvent e) {
             super.mousePressed(e);
             G.activate(e.getPoint());
+            dragging = true;
+            mouseBuffer = e.getPoint();
         }
 
         /**
@@ -64,8 +68,10 @@ public class GraphPanel extends JPanel{
 
         @Override
         public void mouseReleased(MouseEvent e) {
+            dragging = false;
             super.mouseReleased(e);
         }
+
 
 
         /**
@@ -75,6 +81,7 @@ public class GraphPanel extends JPanel{
         @Override
         public void mouseDragged(MouseEvent e) {
             super.mouseDragged(e);
+            Node G.
         }
 
         /**
