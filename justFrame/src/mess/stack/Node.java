@@ -1,25 +1,32 @@
 package mess.stack;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
 
-public abstract class Node implements DrawSelf {
+public abstract class Node implements DrawSelf, Movable {
     private int x, y, width, height;
 
-    private Node(){}
+    private Node() {
+    }
 
-    public Node(int X0, int Y0, int X1, int Y1){
+    public Node(int X0, int Y0, int X1, int Y1) {
         x = min(X0, X1);
         y = min(Y0, Y1);
         width = abs(X0 - X1);
         height = abs(Y0 - Y1);
     }
-    public Node(Point p0, Point p1)
-    {
-        this((int)p0.getX(), (int)p0.getY(), (int)p1.getX(), (int)p1.getY());
+
+    public Node(Point p0, Point p1) {
+        this((int) p0.getX(), (int) p0.getY(), (int) p1.getX(), (int) p1.getY());
+    }
+
+    @Override
+    public void move(int dx, int dy) {
+        x += dx;
+        y += dy;
+        System.out.println("move" + dx + ", " + dy);
     }
 
     public int getX() {

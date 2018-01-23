@@ -1,14 +1,13 @@
 package mess.stack;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 public interface DrawSelf {
     /**
-     *
-     * @param pic
+     * @param pic 通过这个图形对象进行绘图
      * @param bound 整个绘图框的边界
      */
-    public void draw(Graphics2D pic, Rectangle bound);
-    public boolean isPointOn(Point mouseP);
+    void draw(Graphics2D pic, Rectangle bound);
+
+    boolean isPointOn(Point mouseP);
 }

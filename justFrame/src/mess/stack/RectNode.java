@@ -1,25 +1,18 @@
 package mess.stack;
 
-import com.sun.deploy.util.StringUtils;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.util.Collection;
 
-import static javax.swing.SwingConstants.LEFT;
-
-public class RectNode extends Node{
+public class RectNode extends Node {
     String text = "test";
-    public RectNode(int X0, int Y0, int X1, int Y1){
+
+    public RectNode(int X0, int Y0, int X1, int Y1) {
         super(X0, Y0, X1, Y1);
-        for (int i = 0; i < 5; i++)
-        {
+        for (int i = 0; i < 5; i++) {
             text = text + text;
         }
     }
+
     @Override
     public void draw(Graphics2D pic, Rectangle bound) {
         JTextArea label = new JTextArea(text);
@@ -34,8 +27,7 @@ public class RectNode extends Node{
     @Override
     public boolean isPointOn(Point mouseP) {
         if (mouseP.getX() >= getX() && mouseP.getY() >= getY() &&
-                mouseP.getX() <= getWidth() + getX() && mouseP.getY() <= getHeight())
-        {
+                mouseP.getX() <= getWidth() + getX() && mouseP.getY() <= getHeight() + getY()) {
             return true;
         }
         return false;
