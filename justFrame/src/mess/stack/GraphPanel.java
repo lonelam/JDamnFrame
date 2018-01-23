@@ -11,14 +11,21 @@ public class GraphPanel extends JPanel {
     private boolean isGridHide = false;
     private Graph G = new Graph();
     private Grid grid = new Grid(10);
-    private Point mouseBuffer;
-    private boolean dragging = false;
     private Tool currentTool;
 
     public GraphPanel() {
         setBackground(Color.WHITE);
         addMouseListener(new GraphPanelMouseListener());
         addMouseMotionListener(new GraphPanelMouseMotionListener());
+    }
+
+    void setCurrentTool(Tool tool)
+    {
+        currentTool = tool;
+    }
+
+    public Graph getG() {
+        return G;
     }
 
     public void setGridHide() {
@@ -49,21 +56,14 @@ public class GraphPanel extends JPanel {
         @Override
         public void mouseMoved(MouseEvent e) {
             super.mouseMoved(e);
-
+            repaint();
         }
 
         @Override
         public void mouseDragged(MouseEvent e) {
             super.mouseDragged(e);
-            if (dragging) {
-                currentTool.mouseDrag(e, G);
-                Node act = G.getActor();
-                if (act != null) {
-                    act.move((int) (e.getPoint().getX() - mouseBuffer.getX()), (int) (e.getPoint().getY() - mouseBuffer.getY()));
-                    repaint();
-                }
-                mouseBuffer = e.getPoint();
-            }
+            currentTool.mouseDrag(e, G);
+            repaint();
         }
     }
 
@@ -77,11 +77,7 @@ public class GraphPanel extends JPanel {
         public void mousePressed(MouseEvent e) {
             super.mousePressed(e);
             currentTool.mouseDown(e, G);
-            Node act = G.activate(e.getPoint());
-            if (act != null) {
-                dragging = true;
-            }
-            mouseBuffer = e.getPoint();
+            repaint();
         }
 
         /**
@@ -95,7 +91,7 @@ public class GraphPanel extends JPanel {
         public void mouseReleased(MouseEvent e) {
             super.mouseReleased(e);
             currentTool.mouseUp(e, G);
-            dragging = false;
+            repaint();
         }
 
 
@@ -113,11 +109,11 @@ public class GraphPanel extends JPanel {
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
+            currentTool.singleClicked(e, G);
             if (e.getClickCount() == 2) {
                 currentTool.doubleClicked(e, G);
-                System.out.println("double clicked");
             }
-            currentTool.singleClicked(e, G);
+            repaint();
         }
     }
 }

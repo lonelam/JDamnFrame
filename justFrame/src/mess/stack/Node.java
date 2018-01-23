@@ -22,11 +22,17 @@ public abstract class Node implements DrawSelf, Movable {
         this((int) p0.getX(), (int) p0.getY(), (int) p1.getX(), (int) p1.getY());
     }
 
+    public void update(int X0, int Y0, int X1, int Y1)
+    {
+        x = min(X0, X1);
+        y = min(Y0, Y1);
+        width = abs(X0 - X1);
+        height = abs(Y0 - Y1);
+    }
     @Override
     public void move(int dx, int dy) {
         x += dx;
         y += dy;
-        System.out.println("move" + dx + ", " + dy);
     }
 
     public int getX() {

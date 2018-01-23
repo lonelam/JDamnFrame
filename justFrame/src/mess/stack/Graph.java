@@ -42,15 +42,23 @@ public class Graph implements DrawSelf {
                 break;
             }
         }
-
         return getActor();
     }
 
+    public void newNode(Node node)
+    {
+        actor = nodes.size();
+        nodes.add(node);
+    }
     public Node getActor() {
-        System.out.println(actor);
         if (actor == -1) {
             return null;
         }
         return nodes.get(actor);
+    }
+    public void deleteActor()
+    {
+        if (actor == -1) return;
+        nodes.remove(actor);
     }
 }
