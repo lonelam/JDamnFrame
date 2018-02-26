@@ -14,6 +14,7 @@ public class entry {
         catch (Exception e)
         {
             System.out.println("载入风格期间发生错误");
+            System.exit(-1);
         }
         SwingUtilities.updateComponentTreeUI(mFindow);
         mFindow.setVisible(true);

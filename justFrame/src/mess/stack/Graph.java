@@ -5,18 +5,26 @@ import java.util.ArrayList;
 
 public class Graph implements DrawSelf {
     private ArrayList<Node> nodes = new ArrayList<>();
+    private ArrayList<Edge> edges = new ArrayList<>();
     //the node in action or been selected
     private int actor = -1;
     private Rectangle boundBuffer = new Rectangle(0, 0);
 
     Graph() {
+        /*
+        默认初始图，测试用，后期删除
+         */
         nodes.add(new RectNode(100, 50, 500, 430));
+        edges.add(new SimpleArrow(110, 60, 510, 440));
     }
 
     @Override
     public void draw(Graphics2D pic, Rectangle bound) {
         for (Node node : nodes) {
             node.draw(pic, bound);
+        }
+        for (Edge edge: edges){
+            edge.draw(pic, bound);
         }
         boundBuffer = bound;
     }
