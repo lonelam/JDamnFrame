@@ -1,9 +1,9 @@
 package mess.stack;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
+import static java.lang.Math.*;
 
 public class SimpleArrow extends Edge{
     SimpleArrow(Point s, Point t){
@@ -24,9 +24,24 @@ public class SimpleArrow extends Edge{
 
     @Override
     public void draw(Graphics2D pic, Rectangle bound) {
+
         pic.drawLine(s.x, s.y, t.x, t.y);
-        Point left =
-        pic.drawP
+        double vx = t.x - s.x, vy = t.y - s.y;
+        double len = sqrt(vx * vx + vy * vy);
+        vx /= len;
+        vy /= len;
+        double wx = vy, wy = -vx;
+        double ox = t.x - vx * 7.5, oy = t.y - vy * 7.5;
+        double cx = ox + wx * 5.0, cy = oy + wy * 5.0;
+        double dx = ox - wx * 5.0, dy = oy - wy * 5.0;
+        int [] xs = new int[] {(int)cx, (int)dx, t.x};
+        int [] ys = new int[] {(int)cy, (int)dy, t.y};
+        pic.fillPolygon(xs, ys, 3);
+        AffineTransform orig = pic.getTransform();
+
+        pic.rotate(atan2(vy, vx), (s.x + t.x) / 2, (s.y + t.y) / 2);
+        pic.drawString("SimpleArrow", (s.x + t.x) / 2, (s.y + t.y) / 2);
+        pic.setTransform(orig);
     }
 
     @Override
@@ -41,8 +56,10 @@ public class SimpleArrow extends Edge{
                 ){
             /*
             然后在线附近
+            搞不定矩形的判定方式，这里大概会形成一个椭圆形的区域
              */
-            if ((mouseP.getX() - s.x) * (t.y - s.y) == (mouseP.getY() - s.y) * (t.x - s.x)) {
+            if (abs((mouseP.getX() - s.x) * (t.y - s.y) - (mouseP.getY() - s.y) * (t.x - s.x)) < 1000.0) {
+
                 return true;
             }
         }

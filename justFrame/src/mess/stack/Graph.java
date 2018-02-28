@@ -2,6 +2,7 @@ package mess.stack;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class Graph implements DrawSelf {
     private ArrayList<Node> nodes = new ArrayList<>();
@@ -58,15 +59,60 @@ public class Graph implements DrawSelf {
         actor = nodes.size();
         nodes.add(node);
     }
+
+    public void newEdge(Edge edge) {
+        edges.add(edge);
+    }
+
     public Node getActor() {
         if (actor == -1) {
             return null;
         }
         return nodes.get(actor);
     }
+
     public void deleteActor()
     {
         if (actor == -1) return;
         nodes.remove(actor);
+        actor = -1;
     }
+    public Edge actEdge(Point mouseP){
+        for (Edge e: edges)
+        {
+            if (e.isPointOn(mouseP))
+            {
+                return e;
+            }
+        }
+        return null;
+    }
+    public void deleteEdge(Edge e)
+    {
+        if (e == null) return;
+        edges.remove(e);
+    }
+
+    public Vector<Point> getLinkPoint(){
+        if (actor == -1)
+            return  new Vector<>();
+        Vector<Point> ret = new Vector<>();
+        for (Edge e: edges)
+        {
+            Node v = getActor();
+            if(v.isPointOn(e.s))
+            {
+                ret.add(e.s);
+//                System.out.println(e.s.toString()+ " in " + v.getX() + " , " + v.getY());
+            }
+            if (v.isPointOn(e.t))
+            {
+                ret.add(e.t);
+//                System.out.println(e.t.toString()+ " in "+ v.getX() + " , " + v.getY());
+            }
+        }
+        return ret;
+    }
+
+
 }

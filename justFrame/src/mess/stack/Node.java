@@ -18,6 +18,8 @@ public abstract class Node implements DrawSelf, Movable {
         height = abs(Y0 - Y1);
     }
 
+    public abstract void editorBox();
+
     public Node(Point p0, Point p1) {
         this((int) p0.getX(), (int) p0.getY(), (int) p1.getX(), (int) p1.getY());
     }

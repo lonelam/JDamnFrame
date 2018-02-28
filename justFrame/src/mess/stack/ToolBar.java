@@ -35,6 +35,7 @@ class ToolBar extends JPanel{
         toolList.add(new SelectionTool());
         toolList.add(new RectNodeTool());
         toolList.add(new Eraser());
+        toolList.add(new ArrowDrawTool());
         for (int i = 0; i < toolList.size(); i++)
         {
             JRadioButton button = new ToolButton(toolList.get(i).getToolName(), i);

@@ -16,6 +16,7 @@ public class Eraser extends Tool{
     public void singleClicked(MouseEvent e, Graph G) {
         G.activate(e.getPoint());
         G.deleteActor();
+        G.deleteEdge(G.actEdge(e.getPoint()));
     }
 
     @Override

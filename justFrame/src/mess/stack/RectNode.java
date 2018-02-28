@@ -4,13 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RectNode extends Node {
-    String text = "test";
+    private String text = "test";
 
     public RectNode(int X0, int Y0, int X1, int Y1) {
         super(X0, Y0, X1, Y1);
         for (int i = 0; i < 5; i++) {
             text = text + text;
         }
+    }
+
+    @Override
+    public void editorBox() {
+
     }
 
     @Override
