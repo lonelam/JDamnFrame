@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 import static java.lang.Math.*;
 
 public class SimpleArrow extends Edge{
+    private String textline = "";
     SimpleArrow(Point s, Point t){
         super(s, t);
     }
@@ -40,7 +41,7 @@ public class SimpleArrow extends Edge{
         AffineTransform orig = pic.getTransform();
 
         pic.rotate(atan2(vy, vx), (s.x + t.x) / 2, (s.y + t.y) / 2);
-        pic.drawString("SimpleArrow", (s.x + t.x) / 2, (s.y + t.y) / 2);
+        pic.drawString(textline, (s.x + t.x) / 2, (s.y + t.y) / 2);
         pic.setTransform(orig);
     }
 
@@ -64,5 +65,9 @@ public class SimpleArrow extends Edge{
             }
         }
         return false;
+    }
+
+    public void setTextline(String textline) {
+        this.textline = textline;
     }
 }

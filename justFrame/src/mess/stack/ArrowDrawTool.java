@@ -1,5 +1,8 @@
 package mess.stack;
 
+import jdk.nashorn.internal.scripts.JO;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
@@ -11,6 +14,7 @@ public class ArrowDrawTool extends Tool{
     {
         setToolName("SimpleArrowTool");
     }
+
 
     @Override
     public void doubleClicked(MouseEvent e, Graph G) {
@@ -35,6 +39,9 @@ public class ArrowDrawTool extends Tool{
     @Override
     public void mouseUp(MouseEvent e, Graph G) {
         dragging = false;
+        String stringArray[] = { "<<extends>>", "<<include>>", "<<whatever>>" };
+        arrowBuffer.setTextline(stringArray[JOptionPane.showOptionDialog(e.getComponent(), "What type of relationship do you want?", "type Selection",
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, stringArray, stringArray[0])]);
         arrowBuffer = null;
     }
 
